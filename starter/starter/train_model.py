@@ -8,8 +8,8 @@ import joblib
 from starter.ml.data import process_data
 from starter.ml.model import train_model, compute_model_metrics, inference
 
-# Load the data (update the path if needed).
-data = pd.read_csv("census.csv")  # or your cleaned file
+# Load the data 
+data = pd.read_csv("../data/census_clean.csv")  
 
 # Optional enhancement: use K-fold cross validation instead of a train-test split.
 train, test = train_test_split(data, test_size=0.20, random_state=42)
