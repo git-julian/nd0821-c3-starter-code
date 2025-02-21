@@ -19,7 +19,7 @@ def data():
     """
     Fixture to load the Census dataset.
     """
-    csv_path = os.path.join("starter/data", "census_clean.csv")  # adjust if needed
+    csv_path = os.path.join("starter","data", "census_clean.csv")  # adjust if needed
     if not os.path.exists(csv_path):
         raise FileNotFoundError(f"Could not find CSV at {csv_path}")
     df = pd.read_csv(csv_path)
