@@ -19,12 +19,16 @@ def data():
     """
     Fixture to load the Census dataset.
     """
-    csv_path = os.path.join("..","data", "census_clean.csv")  
+    # Get the absolute directory of this test file.
+    test_dir = os.path.dirname(os.path.abspath(__file__))
+    # Navigate up two levels: from 'starter/tests' to the project root.
+    project_root = os.path.abspath(os.path.join(test_dir, "..", ".."))
+    # Construct the absolute path to the CSV file.
+    csv_path = os.path.join(project_root, "data", "census_clean.csv")
     if not os.path.exists(csv_path):
         raise FileNotFoundError(f"Could not find CSV at {csv_path}")
     df = pd.read_csv(csv_path)
     return df
-
 
 @pytest.fixture(scope="session")
 def processed_data(data):
