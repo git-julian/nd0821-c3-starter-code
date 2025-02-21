@@ -25,4 +25,4 @@ jobs:
       
       - name: Test with pytest
         run: |
-          pytest --rootdir=. starter/tests
+          pytest starter/tests
