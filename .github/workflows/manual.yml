@@ -25,4 +25,4 @@ jobs:
       
       - name: Test with pytest
         run: |
-          pytest starter/tests/ml_test.py
+          pytest starter/tests
