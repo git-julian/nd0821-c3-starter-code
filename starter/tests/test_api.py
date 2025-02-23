@@ -1,40 +1,44 @@
+# test_api.py
 from fastapi.testclient import TestClient
-from main import app
+from app import app  # ensure your app is imported correctly
 
 client = TestClient(app)
 
-def test_get_root():
+def test_get_endpoint():
     """
-    Test the GET endpoint to verify status code and the returned greeting.
+    Test the GET endpoint:
+    - It should return a 200 status code.
+    - It should return the expected greeting message.
     """
     response = client.get("/")
-    assert response.status_code == 200
+    assert response.status_code == 200, "GET request did not return status code 200."
     json_data = response.json()
-    assert "message" in json_data
-    assert json_data["message"] == "Welcome to the Census Income Inference API!"
+    # Check that the response contains the expected message.
+    assert "message" in json_data, "Response JSON does not contain 'message' key."
+    assert json_data["message"] == "Welcome to the Census Income Inference API!", "Greeting message is incorrect."
 
 def test_inference_output_zero():
     """
-    Test the POST endpoint when the input features produce a sum below threshold,
-    expecting a prediction of 0.
+    Test the POST /inference endpoint for a case where the inference should return 0.
+    The dummy inference returns 0 if the sum of features is not greater than 5.0.
     """
-    # Input that sums to less than 5.0: e.g., [0.1, 0.2, 0.3, 0.1, 0.2] (total 0.9)
-    input_data = {"features": [0.1, 0.2, 0.3, 0.1, 0.2]}
-    response = client.post("/inference", json=input_data)
-    assert response.status_code == 200
+    # This payload sums to 0.9 which is less than the threshold 5.0.
+    payload = {"features": [0.1, 0.2, 0.3, 0.1, 0.2]}
+    response = client.post("/inference", json=payload)
+    assert response.status_code == 200, "POST request did not return status code 200."
     json_data = response.json()
-    assert "prediction" in json_data
-    assert json_data["prediction"] == 0
+    assert "prediction" in json_data, "Response JSON does not contain 'prediction' key."
+    assert json_data["prediction"] == 0, "Expected prediction of 0 for sum below threshold."
 
 def test_inference_output_one():
     """
-    Test the POST endpoint when the input features produce a sum above threshold,
-    expecting a prediction of 1.
+    Test the POST /inference endpoint for a case where the inference should return 1.
+    The dummy inference returns 1 if the sum of features is greater than 5.0.
     """
-    # Input that sums to more than 5.0: e.g., [2.0, 1.5, 1.0, 0.5, 1.0] (total 6.0)
-    input_data = {"features": [2.0, 1.5, 1.0, 0.5, 1.0]}
-    response = client.post("/inference", json=input_data)
-    assert response.status_code == 200
+    # This payload sums to 6.0 which is greater than the threshold 5.0.
+    payload = {"features": [2.0, 1.5, 1.0, 0.5, 1.0]}
+    response = client.post("/inference", json=payload)
+    assert response.status_code == 200, "POST request did not return status code 200."
     json_data = response.json()
-    assert "prediction" in json_data
-    assert json_data["prediction"] == 1
+    assert "prediction" in json_data, "Response JSON does not contain 'prediction' key."
+    assert json_data["prediction"] == 1, "Expected prediction of 1 for sum above threshold."
