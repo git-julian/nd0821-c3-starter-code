@@ -1,8 +1,8 @@
 # test_api.py
 from fastapi.testclient import TestClient
-from starter.main import main  
+from starter.main import app  
 
-client = TestClient(main)
+client = TestClient(app)
 
 def test_get_endpoint():
     """
