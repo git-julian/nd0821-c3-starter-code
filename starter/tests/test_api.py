@@ -1,8 +1,8 @@
 # test_api.py
 from fastapi.testclient import TestClient
-from app import app  # ensure your app is imported correctly
+from starter.main import main  
 
-client = TestClient(app)
+client = TestClient(main)
 
 def test_get_endpoint():
     """
