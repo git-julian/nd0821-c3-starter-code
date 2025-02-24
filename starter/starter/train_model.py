@@ -65,7 +65,7 @@ slice_results = compute_slice_metrics(
     label_column="salary",
     categorical_features=cat_features
 )
-output_slice_metrics(slice_results, output_file="slice_output.txt")
+output_slice_metrics(slice_results, output_file="../model/slice_output.txt")
 print("Slice performance metrics written to slice_output.txt.")
 
 # Save the trained model and preprocessing artifacts.
