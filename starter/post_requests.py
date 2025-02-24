@@ -22,7 +22,7 @@ def main():
         "native_country": "United-States"
     }
     
-    # Extract a list of features in the order expected by your model.
+    # Extract a list of features in the order expected by the model.
     # Adjust the order and which fields to include as needed.
     features = [
         census_data["age"],

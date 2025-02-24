@@ -26,7 +26,7 @@ The model is a binary classifier built using a Random Forest algorithm. It lever
 
 ## Evaluation Data
 - The model is evaluated on a 20% hold-out test set.
-- Additional slice-based metrics are computed for subgroups defined by the `education` feature to assess model performance across different demographic segments.
+- Additional slice-based metrics lsare computed for subgroups defined by the `education` feature to assess model performance across different demographic segments.
 
 ## Metrics
 - **Precision:** Measures the proportion of positive predictions that are correct.
@@ -36,9 +36,9 @@ The model is a binary classifier built using a Random Forest algorithm. It lever
 
 ### Example Performance Metrics
 - **Overall Performance:**
-  - Precision: 0.85
-  - Recall: 0.80
-  - F1 Score: 0.82
+  - Precision: 0.7391
+  - Recall: 0.6384
+  - F1 Score: 0.6851
 - **Slice Performance:** See `slice_output.txt` for detailed metrics on each education level.
 
 ## Limitations
